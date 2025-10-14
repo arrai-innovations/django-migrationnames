@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import migrations
 
 
@@ -8,8 +7,6 @@ class Migration(migrations.Migration):
     replaces = [
         ("users", "0001_initial"),
     ]
-
-    dependencies = []
 
     run_before = [
         ("app_one", "0001_squashed_initial"),
