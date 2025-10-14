@@ -12,7 +12,6 @@ class Migration(migrations.Migration):
         ("app_three", "0003_app_three"),
         ("app_three", "0004_app_three"),
         ("app_three", "0005_app_three"),
-        ("app_three", "0006_app_three"),
     ]
 
     dependencies = []

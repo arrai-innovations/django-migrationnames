@@ -15,28 +15,6 @@ class Migration(migrations.Migration):
         ("app_nine", "0003_app_nine"),
         ("app_nine", "0004_app_nine"),
         ("app_nine", "0005_app_nine"),
-        ("app_nine", "0006_app_nine"),
-        ("app_nine", "0007_app_nine"),
-        ("app_nine", "0008_app_nine"),
-        ("app_nine", "0009_app_nine"),
-        ("app_nine", "0010_app_nine"),
-        ("app_nine", "0011_app_nine"),
-        ("app_nine", "0012_app_nine"),
-        ("app_nine", "0013_app_nine"),
-        ("app_nine", "0014_app_nine"),
-        ("app_nine", "0015_app_nine_2"),
-        ("app_nine", "0015_app_nine"),
-        ("app_nine", "0016_app_nine"),
-        ("app_nine", "0017_app_nine"),
-        (
-            "app_nine",
-            "0018_app_nine",
-        ),
-        ("app_nine", "0019_app_nine"),
-        (
-            "app_nine",
-            "0020_app_nine",
-        ),
     ]
 
     dependencies = [

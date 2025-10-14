@@ -17,13 +17,6 @@ class Migration(migrations.Migration):
             "0004_app_eighteen",
         ),
         ("app_eighteen", "0005_app_eighteen"),
-        ("app_eighteen", "0006_app_eighteen"),
-        ("app_eighteen", "0007_app_eighteen"),
-        ("app_eighteen", "0008_app_eighteen"),
-        ("app_eighteen", "0009_app_eighteen"),
-        ("app_eighteen", "0010_app_eighteen"),
-        ("app_eighteen", "0011_app_eighteen"),
-        ("app_eighteen", "0012_app_eighteen"),
     ]
 
     dependencies = [

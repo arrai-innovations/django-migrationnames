@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         # ("users", "0012_update_task_code_manager_with_software"),
-        ("app_thirteen", "0014_app_thirteen"),
+        ("app_thirteen", "0003_app_thirteen"),
     ]
 
     operations = []

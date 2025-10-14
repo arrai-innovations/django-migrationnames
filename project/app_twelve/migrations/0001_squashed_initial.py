@@ -13,26 +13,6 @@ class Migration(migrations.Migration):
         ("app_twelve", "0001_initial"),
         ("app_twelve", "0002_app_twelve"),
         ("app_twelve", "0003_app_twelve"),
-        ("app_twelve", "0004_app_twelve"),
-        ("app_twelve", "0005_app_twelve"),
-        ("app_twelve", "0006_app_twelve"),
-        ("app_twelve", "0007_app_twelve"),
-        ("app_twelve", "0008_app_twelve"),
-        ("app_twelve", "0009_app_twelve"),
-        ("app_twelve", "0010_app_twelve"),
-        (
-            "app_twelve",
-            "0011_app_twelve",
-        ),
-        ("app_twelve", "0012_app_twelve"),
-        ("app_twelve", "0013_app_twelve"),
-        ("app_twelve", "0014_app_twelve"),
-        ("app_twelve", "0015_app_twelve"),
-        ("app_twelve", "0016_app_twelve"),
-        ("app_twelve", "0017_app_twelve"),
-        ("app_twelve", "0018_app_twelve"),
-        ("app_twelve", "0019_app_twelve"),
-        ("app_twelve", "0020_app_twelve"),
     ]
 
     dependencies = [

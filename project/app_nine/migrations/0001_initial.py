@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         # migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("app_seventeen", "0033_app_seventeen"),
+        # ("app_seventeen", "0033_app_seventeen"),
     ]
 
     operations = []
