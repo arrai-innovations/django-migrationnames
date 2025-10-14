@@ -18,6 +18,17 @@ The first step to help prevent circular dependency errors, was to comment out th
     https://github.com/django/django/blob/2d2e1a6a9dbfe0cba58a4d2486c51fccdb501d55/django/db/migrations/loader.py#L111-L115
 
 
+## Recent Changes / Discoveries
+
+* 2 old migrations had dependencies that I had missed commenting out, which appears to be how this issue occurs.
+
+* Commented out 1 of the old migration dependencies.  This modified the distinct situations that can occur.  There are now 2 that suceed and 2 that cause a CircularDependencyError.
+
+* All apps have been modified to have a max of 6 migrations.
+
+* Modified the dependency in the old migration to point to the last migration for that app.
+
+
 ## Usage
 
 The management command is called `show_issue`.  It imports and modifies the MigrationLoader to provide a way to capture and analyze the results of each attempt.
