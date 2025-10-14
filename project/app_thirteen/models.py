@@ -29,9 +29,6 @@ class ModelThirtyOne(models.Model):
             "is_senior_project_lead": True,
         },
     )
-    client = related.ForeignKey(
-        "app_two.ModelTwo", on_delete=models.PROTECT, related_name="projects"
-    )
     party_leaders = related.ManyToManyField(
         "app_six.ModelNine",
         blank=True,

@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("app_two", "0001_squashed_initial"),
+        # ("app_two", "0001_squashed_initial"),
         ("app_six", "0001_squashed_initial"),
     ]
 
@@ -48,14 +48,6 @@ class Migration(migrations.Migration):
                         limit_choices_to={"is_senior_project_lead": True},
                         related_name="projects_as_senior_project_lead",
                         to="app_six.modelnine",
-                    ),
-                ),
-                (
-                    "client",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.PROTECT,
-                        related_name="projects",
-                        to="app_two.modeltwo",
                     ),
                 ),
                 (
