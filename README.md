@@ -22,7 +22,7 @@ The first step to help prevent circular dependency errors, was to comment out th
 
 * 2 old migrations had dependencies that I had missed commenting out, which appears to be how this issue occurs.
 
-* Commented out 1 of the old migration dependencies.  This modified the distinct situations that can occur.  There are now 2 that suceed and 2 that cause a CircularDependencyError.
+* Commented out 1 of the old migration dependencies.  This modified the distinct situations that can occur.  There are now 2 that succeed and 2 that cause a CircularDependencyError.
 
 * All apps have been modified to have a max of 6 migrations.
 
