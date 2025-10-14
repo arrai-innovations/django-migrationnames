@@ -22,21 +22,6 @@ class ModelThirtyOne(models.Model):
     non_billable = fields.BooleanField(default=False)
     # Refer to project/utils/globals.py for the hard code client name, used to determine if is_australian.
     is_australian = fields.BooleanField(default=False)
-    senior_project_leads = related.ManyToManyField(
-        "app_six.ModelNine",
-        related_name="projects_as_senior_project_lead",
-        limit_choices_to={
-            "is_senior_project_lead": True,
-        },
-    )
-    party_leaders = related.ManyToManyField(
-        "app_six.ModelNine",
-        blank=True,
-        related_name="projects_as_party_leader",
-        limit_choices_to={
-            "is_party_leader": True,
-        },
-    )
 
     class Meta:
         ordering = ("-full_number",)

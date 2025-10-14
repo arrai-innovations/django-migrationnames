@@ -18,8 +18,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        # ("app_two", "0001_squashed_initial"),
-        ("app_six", "0001_squashed_initial"),
     ]
 
     run_before = [
@@ -42,23 +40,6 @@ class Migration(migrations.Migration):
                 ),
                 ("name", models.CharField(max_length=1024)),
                 ("full_number", models.CharField(max_length=1024, unique=True)),
-                (
-                    "senior_project_leads",
-                    models.ManyToManyField(
-                        limit_choices_to={"is_senior_project_lead": True},
-                        related_name="projects_as_senior_project_lead",
-                        to="app_six.modelnine",
-                    ),
-                ),
-                (
-                    "party_leaders",
-                    models.ManyToManyField(
-                        blank=True,
-                        limit_choices_to={"is_party_leader": True},
-                        related_name="projects_as_party_leader",
-                        to="app_six.modelnine",
-                    ),
-                ),
                 ("is_australian", models.BooleanField(default=False)),
                 ("non_billable", models.BooleanField(default=False)),
             ],

@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
         ("app_one", "0001_squashed_initial"),
         # ("app_two", "0001_squashed_initial"),
         ("app_four", "0001_squashed_initial"),
-        ("app_six", "0001_squashed_initial"),
+        # ("app_six", "0001_squashed_initial"),
         ("app_nine", "0001_squashed_initial"),
         ("app_eleven", "0001_squashed_initial"),
         ("app_twelve", "0001_squashed_initial"),
