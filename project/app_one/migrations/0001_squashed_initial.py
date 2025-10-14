@@ -9,9 +9,7 @@ class Migration(migrations.Migration):
         ("app_one", "0001_initial"),
     ]
 
-    dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-    ]
+    dependencies = []
 
     run_before = [
         ("app_two", "0001_squashed_initial"),
