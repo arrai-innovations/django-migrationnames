@@ -13,7 +13,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("app_seventeen", "0002_populate_data"),
-        ("app_nine", "0001_squashed_initial"),
     ]
 
     operations = []

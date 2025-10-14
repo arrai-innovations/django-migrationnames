@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         ("app_seventeen", "0001_squashed_initial"),
     ]
 
-    run_before = [("app_nine", "0001_squashed_initial")]
+    run_before = []
 
     operations = []

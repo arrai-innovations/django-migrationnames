@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "project.management_command",
     "project.app_one.apps.AppOneConfig",
-    "project.app_nine.apps.AppNineConfig",
     "project.app_thirteen.apps.AppThirteenConfig",
     "project.app_fifteen.apps.AppFifteenConfig",
     "project.app_seventeen.apps.AppSeventeenConfig",
