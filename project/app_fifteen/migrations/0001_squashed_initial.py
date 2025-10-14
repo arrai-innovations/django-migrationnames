@@ -16,7 +16,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("app_three", "0001_squashed_initial"),
         ("app_thirteen", "0001_squashed_initial"),
         ("app_seventeen", "0001_squashed_initial"),
     ]

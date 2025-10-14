@@ -18,7 +18,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("users", "0001_squashed_initial"),
-        ("app_three", "0001_squashed_initial"),
     ]
 
     operations = [

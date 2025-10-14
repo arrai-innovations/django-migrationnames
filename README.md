@@ -28,7 +28,7 @@ The first step to help prevent circular dependency errors, was to comment out th
 
 * Modified the dependency in the old migration to point to the last migration for that app.
 
-* Removed apps 5 and 7.  Also contrib, which wasn't used.
+* Removed apps 3, 5 and 7.  Also contrib, which wasn't used.
 
 
 ## Usage

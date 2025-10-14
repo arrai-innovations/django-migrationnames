@@ -23,7 +23,6 @@ class Migration(migrations.Migration):
     run_before = [
         ("app_one", "0001_squashed_initial"),
         ("app_two", "0001_squashed_initial"),
-        ("app_three", "0001_squashed_initial"),
         ("app_four", "0001_squashed_initial"),
         ("app_six", "0001_squashed_initial"),
         ("app_eight", "0001_squashed_initial"),
