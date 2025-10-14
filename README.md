@@ -10,25 +10,12 @@ This project has its migrations set up in a way that if you call `showmigrations
 
 Project code, app names, model names, and migrations have been changed to obscure what the project is and minimize things needed to test the issue.  These changes didn't affect the circular dependency issues that occur.
 
-There are 8 distinct situations that can occur.  2 of them succeed and 6 cause a CircularDependencyError.
+There are 2 distinct situations that can occur.  1 of them succeeds and 1 causes a CircularDependencyError.
 
 
 The first step to help prevent circular dependency errors, was to comment out the dependencies to other apps in the older migrations.  This helps, but doesn't fix the issue.  The issue is related to this set containing migration names.  If this set is turned into a list, then the success rate jumps to 100%.
 
     https://github.com/django/django/blob/2d2e1a6a9dbfe0cba58a4d2486c51fccdb501d55/django/db/migrations/loader.py#L111-L115
-
-
-## Recent Changes / Discoveries
-
-* 2 old migrations had dependencies that I had missed commenting out, which appears to be how this issue occurs.
-
-* Commented out 1 of the old migration dependencies.  This modified the distinct situations that can occur.  There are now 2 that succeed and 2 that cause a CircularDependencyError.
-
-* All apps have been modified to have a max of 6 migrations.
-
-* Modified the dependency in the old migration to point to the last migration for that app.
-
-* Removed apps 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, and 17.  Also contrib, which wasn't used.
 
 
 ## Usage
@@ -47,23 +34,23 @@ Output:
 Using shuffled set of migration names.
 Attempt 1 Failed
 Attempt 2 Failed
-Attempt 3 Failed
+Attempt 3 Succeeded
 Attempt 4 Succeeded
 ...
 Attempt 97 Failed
-Attempt 98 Succeeded
-Attempt 99 Failed
-Attempt 100 Succeeded
+Attempt 98 Failed
+Attempt 99 Succeeded
+Attempt 100 Failed
 
 Results:
-    41 Succeeded
-    59 Failed
+    52 Succeeded
+    48 Failed
     
 Succeeding Attempts:
-    {4, 7, 8, 10, 15, 18, 23, 27, 29, 32, 34, 35, 41, 42, 47, 48, 49, 50, 51, 53, 55, 59, 60, 66, 67, 68, 75, 76, 77, 78, 79, 81, 82, 86, 87, 88, 90, 93, 95, 98, 100}
+    {3, 4, 7, 8, 9, 11, 14, 15, 16, 17, 19, 21, 23, 24, 25, 26, 30, 32, 35, 38, 41, 43, 46, 48, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 65, 66, 67, 69, 71, 73, 77, 78, 80, 82, 83, 86, 87, 91, 95, 96, 99}
 
 CircularDependencyError Attempts:
-    {1, 2, 3, 5, 6, 9, 11, 12, 13, 14, 16, 17, 19, 20, 21, 22, 24, 25, 26, 28, 30, 31, 33, 36, 37, 38, 39, 40, 43, 44, 45, 46, 52, 54, 56, 57, 58, 61, 62, 63, 64, 65, 69, 70, 71, 72, 73, 74, 80, 83, 84, 85, 89, 91, 92, 94, 96, 97, 99}
+    {1, 2, 5, 6, 10, 12, 13, 18, 20, 22, 27, 28, 29, 31, 33, 34, 36, 37, 39, 40, 42, 44, 45, 47, 49, 50, 52, 57, 64, 68, 70, 72, 74, 75, 76, 79, 81, 84, 85, 88, 89, 90, 92, 93, 94, 97, 98, 100}
 ```
 
 When creating this management command, it was discovered that iterating over the set would always occur in the same order, so to mimic the randomness that occurs when using `showmigrations`, the migration names are shuffled with each loop iteration.  You can always call `showmigrations` a number of times to verify that sometimes it fails and sometimes it passes.
@@ -92,80 +79,55 @@ The logged files are:
     ```
     Attempt #3
         Migrations:
-            app_eight.0001_squashed_initial
+            app_one.0001_squashed_initial
+                Children:
+                    app_one.0002_squashed_initial
+                    app_two.0001_squashed_initial
+            app_one.0002_squashed_initial
                 No Children
-            app_eighteen.0001_squashed_initial
+            app_two.0001_squashed_initial
+                Children:
+                    app_one.0002_squashed_initial
+            ...
+            users.0001_squashed_initial
                 Children:
                     app_one.0001_squashed_initial
-                    app_seventeen.0001_squashed_initial
-                    app_thirteen.0002_squashed_initial
-                    app_twelve.0001_squashed_initial
-            ...
-            users.0002_squashed_initial
-                No Children
+                    app_one.0002_squashed_initial
+                    app_two.0001_squashed_initial
     ```
 
-* `original_differences_between_successes.txt` or `fixed_differences_between_successes.txt` - compares the results of the first success to any subsequent successes.
+* `original_differences_between_successes_and_failures.txt` or `fixed_differences_between_successes_and_failures.txt` - compares the results of the first success to any failures.
 
     Output:
     ```
-    Comparing Attempt #5 and #7
-        No Differences
-    
-    Comparing Attempt #5 and #9
+    Comparing Attempt #1 and #2
         Migrations:
-            users.0001_squashed_initial
-                Missing:
-                    app_thirteen.0002_squashed_initial
-    
-            users.0002_squashed_initial
+            app_one.0002_squashed_initial
                 Extra:
                     app_two.0001_squashed_initial
-                    app_seventeen.0001_squashed_initial
-                    app_thirteen.0001_squashed_initial
-                    app_four.0001_squashed_initial
-                    app_thirteen.0002_squashed_initial
-                    app_one.0001_squashed_initial
-                    app_six.0001_squashed_initial
-                    app_eighteen.0001_squashed_initial
-                    app_eleven.0001_squashed_initial
-                    app_fifteen.0001_squashed_initial
-                    app_nine.0001_squashed_initial
-                    app_twelve.0001_squashed_initial
     ```
 
-* `original_differences_between_failures.txt` or `fixed_differences_between_failures.txt` - compares the results of the first failure to any subsequent failure.  This has the same output as above.
-
-* `original_differences_between_successes_and_failures.txt` or `fixed_differences_between_successes_and_failures.txt` - compares the results of the first success to any failures.  This has the same output as above.
 
 * `original_unique_migrations_and_children_filename.txt` or `fixed_unique_migrations_and_children_filename.txt` - contains all the unique structures of the migrations and their children.
 
     Output:
     ```
-    Unique Migrations and Children #1 - circular
+    Unique Migrations and Children #1 - success
         Migrations:
-            app_eight.0001_squashed_initial
+            app_one.0001_squashed_initial
+                Children:
+                    app_one.0002_squashed_initial
+                    app_two.0001_squashed_initial
+            app_one.0002_squashed_initial
                 No Children
-            app_eighteen.0001_squashed_initial
+            app_two.0001_squashed_initial
                 Children:
-                    app_one.0001_squashed_initial
-                    app_seventeen.0001_squashed_initial
-                    app_thirteen.0002_squashed_initial
-                    app_twelve.0001_squashed_initial
+                    app_one.0002_squashed_initial
             ...
-            users.0002_squashed_initial
+            users.0001_squashed_initial
                 Children:
-                    app_eighteen.0001_squashed_initial
-                    app_eleven.0001_squashed_initial
-                    app_fifteen.0001_squashed_initial
-                    app_four.0001_squashed_initial
-                    app_nine.0001_squashed_initial
                     app_one.0001_squashed_initial
-                    app_seventeen.0001_squashed_initial
-                    app_six.0001_squashed_initial
-                    app_thirteen.0001_squashed_initial
-                    app_thirteen.0002_squashed_initial
-                    app_twelve.0001_squashed_initial
+                    app_one.0002_squashed_initial
                     app_two.0001_squashed_initial
     ```
 

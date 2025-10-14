@@ -5,5 +5,5 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("app_thirteen", "0001_initial"),
+        ("app_one", "0001_initial"),
     ]

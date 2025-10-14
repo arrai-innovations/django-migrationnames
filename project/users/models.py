@@ -3,9 +3,7 @@ from django.db.models import EmailField
 
 
 class User(AbstractBaseUser):
-    email = EmailField(
-        db_collation="case_insensitive", unique=True, verbose_name="field_eight address"
-    )
+    email = EmailField(unique=True)
 
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "email"

@@ -22,8 +22,8 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "project.management_command",
-    "project.app_thirteen.apps.AppThirteenConfig",
-    "project.app_eighteen.apps.AppEighteenConfig",
+    "project.app_one.apps.AppOneConfig",
+    "project.app_two.apps.AppTwoConfig",
     "project.users.apps.UsersConfig",
 ]
 

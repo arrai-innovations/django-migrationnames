@@ -329,12 +329,6 @@ class Command(DjangoShowMigrationsCommand):
         if self.use_fixed:
             successes_filename = "fixed_successes.txt"
             failures_filename = "fixed_failures.txt"
-            differences_between_successes_filename = (
-                "fixed_differences_between_successes.txt"
-            )
-            differences_between_failures_filename = (
-                "fixed_differences_between_failures.txt"
-            )
             differences_between_successes_and_failures_filename = (
                 "fixed_differences_between_successes_and_failures.txt"
             )
@@ -344,12 +338,6 @@ class Command(DjangoShowMigrationsCommand):
         else:
             successes_filename = "original_successes.txt"
             failures_filename = "original_failures.txt"
-            differences_between_successes_filename = (
-                "original_differences_between_successes.txt"
-            )
-            differences_between_failures_filename = (
-                "original_differences_between_failures.txt"
-            )
             differences_between_successes_and_failures_filename = (
                 "original_differences_between_successes_and_failures.txt"
             )
@@ -360,8 +348,6 @@ class Command(DjangoShowMigrationsCommand):
         with (
             open(successes_filename, "w") as S,
             open(failures_filename, "w") as F,
-            open(differences_between_successes_filename, "w") as DS,
-            open(differences_between_failures_filename, "w") as DF,
             open(differences_between_successes_and_failures_filename, "w") as DSF,
             open(unique_migrations_and_children_filename, "w") as U,
         ):
@@ -420,43 +406,9 @@ class Command(DjangoShowMigrationsCommand):
                 min_successes_attempt_number = min(
                     migrations_and_children["successes"], default=None
                 )
-                min_failures_attempt_number = min(
-                    migrations_and_children["failures"], default=None
-                )
 
                 match loader.result:
-                    case "success":
-                        if (
-                            min_successes_attempt_number
-                            and min_successes_attempt_number != attempt_number
-                        ):
-                            original = migrations_and_children["successes"][
-                                min_successes_attempt_number
-                            ]
-                            compare_to(
-                                min_successes_attempt_number,
-                                original,
-                                attempt_number,
-                                attempt_data,
-                                DS,
-                            )
-
                     case "circular":
-                        if (
-                            min_failures_attempt_number
-                            and min_failures_attempt_number != attempt_number
-                        ):
-                            original = migrations_and_children["failures"][
-                                min_failures_attempt_number
-                            ]
-                            compare_to(
-                                min_failures_attempt_number,
-                                original,
-                                attempt_number,
-                                attempt_data,
-                                DF,
-                            )
-
                         if (
                             min_successes_attempt_number
                             and min_successes_attempt_number != attempt_number
