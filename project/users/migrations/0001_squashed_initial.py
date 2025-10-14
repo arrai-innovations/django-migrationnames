@@ -9,9 +9,7 @@ class Migration(migrations.Migration):
         ("users", "0001_initial"),
     ]
 
-    dependencies = [
-        ("auth", "0012_alter_user_first_name_max_length"),
-    ]
+    dependencies = []
 
     run_before = [
         ("app_one", "0001_squashed_initial"),
