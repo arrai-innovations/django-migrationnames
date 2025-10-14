@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     "project.app_eleven.apps.AppElevenConfig",
     "project.app_twelve.apps.AppTwelveConfig",
     "project.app_thirteen.apps.AppThirteenConfig",
-    "project.app_fourteen.apps.AppFourteenConfig",
     "project.app_fifteen.apps.AppFifteenConfig",
     "project.app_sixteen.apps.AppSixteenConfig",
     "project.app_seventeen.apps.AppSeventeenConfig",
